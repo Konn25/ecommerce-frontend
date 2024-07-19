@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartItem } from 'src/app/common/cart-item';
 import { Product } from 'src/app/common/product';
+import { CartService } from 'src/app/service/cart.service';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
@@ -26,7 +28,7 @@ export class ProductListComponent {
   prviousKeyword: string = "";
 
   constructor(private productService: ProductService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -105,6 +107,15 @@ export class ProductListComponent {
       this.thePageSize = data.page.size;
       this.theTotalElements = data.page.totalElements;
     }
+  }
+
+  addToCart(theProduct: Product){
+      console.log("Name: "+theProduct.name + " | Price: "+ theProduct.unitPrice);
+
+      const theCartItem = new CartItem(theProduct);
+
+      this.cartService.addToCart(theCartItem);
+
   }
 
 
