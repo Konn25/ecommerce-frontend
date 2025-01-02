@@ -5,7 +5,8 @@ import { ProductService } from 'src/app/service/product.service';
 @Component({
   selector: 'app-product-category-menu',
   templateUrl: './product-category-menu.component.html',
-  styleUrls: ['./product-category-menu.component.css']
+  styleUrls: ['./product-category-menu.component.css'],
+  standalone: false
 })
 export class ProductCategoryMenuComponent {
 
